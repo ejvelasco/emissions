@@ -1,0 +1,28 @@
+extends layout.pug
+block head
+	head
+		title CO2 API - Test
+		link(rel="stylesheet" type="text/css" href="/css/main.css")
+block content
+	div(id="app-container" ng-app="footprintApp")
+		div(id="container" ng-controller="countryCO2kWh")
+			h1 Green House Gas Emissions from Electricity Production
+			input(type="text" list="countries"  placeholder='Country' ng-model='options.country')
+			input(type="text" placeholder='Amount of Electricity (kWh)' ng-model='options.kWh')
+			datalist(id="countries")
+				option(ng-repeat="country in countryList") {{country}}
+			select(ng-model='options.GHG')
+				option(value="" selected disabled) Green House Gas
+				option Carbon Dioxide (CO2)
+				option Methane (CH4)
+				option Nitrous Oxide (N2O)
+			select(ng-model='options.units')
+				option(value="" selected disabled) Units
+				option pounds
+				option kilograms
+			button(ng-click='calculate(options)') Calculate
+			div(id='result-container')
+				p Green House Gas Emissions: #[p(id='result' ng-model='options.result' ng-cloak) {{options.result}} {{options.resultUnits}}]
+			a(href='https://ecometrica.com/assets/Electricity-specific-emission-factors-for-grid-electricity.pdf' target='blank') Data Source
+	script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js")
+	script(src="/ng/footprintApp.js")
