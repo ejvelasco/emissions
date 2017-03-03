@@ -1,11 +1,11 @@
 module.exports = function(app, connection){
 	app.get('/country-list', function(req,res){
+		//GET COUNTRY LIST FROM DB
 		connection.query('SELECT Country FROM Gas_Em_Kwh_Country', function(error, results, fields){
 			if(error){
-				// res.sendStatus(500);
 				throw error;
 			} else{
-				// console.log(results[0]);
+				//PARSE RESULTS
 				var countryList = results;
 				var parsedCountryList = {
 					countries: []
@@ -13,8 +13,9 @@ module.exports = function(app, connection){
 				for(country in countryList){
 					parsedCountryList.countries.push(countryList[country].Country);
 				}
+				//SEND RESPONSE
 				res.json(parsedCountryList);
 			}
-		})
+		});
 	});
 }

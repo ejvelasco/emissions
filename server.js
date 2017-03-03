@@ -2,8 +2,8 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-//CONNECT TO DATABASE
 const mysql = require('mysql');
+//CONNECT TO DB
 const connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
@@ -11,11 +11,11 @@ const connection = mysql.createConnection({
 	database: 'aossie'
 });
 connection.connect(function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
-  console.log('connected as id ' + connection.threadId);
+	if (err) {
+		console.error('error connecting: ' + err.stack);
+	  	return;
+	}
+	console.log('connected as id ' + connection.threadId);
 });
 //EXPRESS
 const app  = express();
@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 require('./routes/get/views-get')(app);
 require('./routes/get/country-list-get')(app, connection);
 //POST ROUTES
-require('./routes/post/country-co2-kwh-post')(app, connection);
+require('./routes/post/country-em-kwh-post')(app, connection);
 //SERVER
 const listener = app.listen(app.get('port'), function(){
 	console.log('Listening on port ' + listener.address().port);

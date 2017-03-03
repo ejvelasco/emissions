@@ -8,6 +8,7 @@ const footprintApp = angular.module('footprintApp', [])
 		.error(function(data, status){
 			console.error('Error', status, data);
 		});
+		//SET UP OPTIONS
 		$scope.options = {
 			country: '',
 			GHG: '',
@@ -15,8 +16,9 @@ const footprintApp = angular.module('footprintApp', [])
 			units: '',
 			result: 0
 		}
+		//CALCULATE FUNCTION
 		$scope.calculate = function(opts){
-			console.log(opts);
+			//HANDLE EMPTY FIELDS
 			for(option in opts){
 				if(opts[option] === ''){
 					console.log('enter all');
@@ -24,14 +26,15 @@ const footprintApp = angular.module('footprintApp', [])
 					return;
 				}
 			}
+			//TRUNCATE GREEN HOUSE GAS
 			opts.truncGHG = opts.GHG.substring(opts.GHG.length - 4, opts.GHG.length - 1);
-			console.log(opts);
-			$http.post('/country-co2-kwh', opts)
+			//CALCULATION REQUEST
+			$http.post('/country-em-kwh', opts)
 			.success(function(data){
-				console.log(data.result);
+				//SET RESULT
 				opts.result = data.result;
+				//FIX UNITS
 				opts.resultUnits = opts.units;
-				console.log($scope.options.result);
 			})
 			.error(function(data, status){
 				console.error('Error', status, data);
