@@ -8,9 +8,9 @@ block content
 		div(id="container" ng-controller="countryCO2kWh")
 			h1 Green House Gas Emissions from Electricity Production
 			input(type="text" list="countries"  placeholder='Country' ng-model='options.country')
-			input(type="text" placeholder='Amount of Electricity (kWh)' ng-model='options.kWh')
 			datalist(id="countries")
 				option(ng-repeat="country in countryList") {{country}}
+			input(type="text" placeholder='Amount of Electricity (kWh)' ng-model='options.kWh')
 			select(ng-model='options.GHG')
 				option(value="" selected disabled) Green House Gas
 				option Carbon Dioxide (CO2)

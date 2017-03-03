@@ -14,25 +14,33 @@ body{
 			font-size: 18px;
 		}
 		input, select{
-			display: block;
-			padding: 10px;
+			display: inline-block;
+			padding: 8px;
 			width: 190px;
 			margin: 0 auto;
-			margin-top: 15px;
-			margin-bottom: 15px;
+			margin-top: 18px;
+			margin-bottom: 18px;
+			margin-left: 10px;
+			border-style:solid;
+			border-color: grey;
+			border-width: 1px;
+			background-color: #F8F8F8;
 		}
 		select{
 			display: inline-block;
-			margin-left: 10px;
+			
 		}
 		button{
 			display: block;
 			margin: 0 auto;
+			margin-top: 15px;
+			margin-bottom: 15px;
 			padding: 8px;
 			font-size: 14px;
 		}
 		#result-container p{
 			display: inline-block;
+			margin-top: 10px;
 			margin-left: 10px;
 		}
 		a{
